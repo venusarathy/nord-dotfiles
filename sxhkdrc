@@ -1,0 +1,54 @@
+# Reload functions
+#super + Escape
+#	"$XDG_CONFIG_HOME"/sxhkd/functions
+ctrl + alt + t
+	alacritty
+super + Return
+	alacritty
+super + {_,shift +} w
+	bspc node -{c,k}
+super + d
+	firefox
+#Quit bspwm session or restart it
+super + alt + {q,r}
+	bspc {quit,wm -r}
+ 
+super + Escape
+	pkill -USR1 -x sxhkd
+	#killall sxhkd || sxhkd
+ctrl + space
+	rofi -show drun
+@Menu
+	dmenu_run
+super + shift + {t,s,f}
+	bspc node -t {tiled,pseudo_tiled,floating}
+super + m
+	bspc node -t fullscreen
+super + p
+	pcmanfm
+# focus or send to the given desktop
+super + {_,shift + }{1-5}
+	bspc {desktop -f,node -d} '^{1-5}'
+#send and focus on
+super + ctrl + {1-5}
+	bspc node -d '^{1-5}' && bspc desktop -f '^{1-5}'
+#cycle thrugh windows in current desktop
+alt + @Tab
+	bspc node -f next
+alt + shift + @Tab
+	bspc node -f 
+#focus based on direction
+super + {h,j,k,l}
+	bspc node -f {west,south,north,east}
+#swap window in curDesk 
+super + shift + {h,j,k,l}
+	bspc node -s {west,south,north,east}
+#Expand a window by moving one of its side outward
+alt + ctrl + {h,j,k,l}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+#Contract a window by moving one of its side inward
+alt + shift + {h,j,k,l}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+#Move a floating window
+super + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
